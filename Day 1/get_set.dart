@@ -1,6 +1,6 @@
-/*class Student {
-  String name;
-  int age;
+class Student {
+  String name = "";
+  int age = 0;
 
   String get stud_name {
     return name;
@@ -26,7 +26,7 @@
 void main() {
   Student s1 = new Student();
   s1.stud_name = 'MARK';
-  s1.stud_age = 0;
+  s1.stud_age = 60;
   print(s1.stud_name);
   print(s1.stud_age);
-} */
+}
