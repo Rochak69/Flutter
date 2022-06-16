@@ -2,15 +2,15 @@ class Student {
   String name = "";
   int age = 0;
 
-  String get stud_name {
+  String get studName {
     return name;
   }
 
-  void set stud_name(String name) {
+  void set studName(String name) {
     this.name = name;
   }
 
-  void set stud_age(int age) {
+  void set studAge(int age) {
     if (age <= 0) {
       print("Age should be greater than 5");
     } else {
@@ -18,15 +18,15 @@ class Student {
     }
   }
 
-  int get stud_age {
+  int get studAge {
     return age;
   }
 }
 
 void main() {
   Student s1 = new Student();
-  s1.stud_name = 'MARK';
-  s1.stud_age = 60;
-  print(s1.stud_name);
-  print(s1.stud_age);
+  s1.studName = 'MARK';
+  s1.studAge = 60;
+  print(s1.studName);
+  print(s1.studAge);
 }
