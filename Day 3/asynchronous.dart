@@ -1,17 +1,20 @@
-Future<String> createOrderMessage() async {
+Future<void> printOrderMessage() async {
+  print('Awaiting user order...');
   var order = await fetchUserOrder();
-  return 'Your order is: $order';
+  print('Your order is: $order');
 }
 
-Future<String> fetchUserOrder() =>
-    // Imagine that this function is
-    // more complex and slow.
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => 'Large Latte',
-    );
+Future<String> fetchUserOrder() {
+  return Future.delayed(const Duration(seconds: 4), () => 'Large Latte');
+}
 
-Future<void> main() async {
-  print('Fetching user order...');
-  print(await createOrderMessage());
+void main() async {
+  countSeconds(4);
+  await printOrderMessage();
+}
+
+void countSeconds(int s) {
+  for (var i = 1; i <= s; i++) {
+    Future.delayed(Duration(seconds: i), () => print(i));
+  }
 }
