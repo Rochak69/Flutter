@@ -11,13 +11,20 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   void logInAuthentication() {
-    print("Success");
-    if (email == 'aaa') {
-      print('ssss');
+    var username = myController1.text;
+    var password= myController2.text;
+    if (username == "rochak" && password == "rochak") {
+      print("Success");
+      myController1.clear();
+      myController2.clear();
+    } else {
+      print("Invalid Username or Password");
     }
   }
 
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  final myController1 = TextEditingController();
+  final myController2 = TextEditingController();
+
   String email = "";
   String password = "";
 
@@ -29,41 +36,30 @@ class MyAppState extends State<MyApp> {
               title: Text("Book Store Management System"),
             ),
             body: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: <Widget>[
                     Form(
-                        key: _formKey,
                         child: Column(children: <Widget>[
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: 'email',
-                                hintText: 'Enter you email'),
-                            onFieldSubmitted: (value) {
-                              setState(
-                                () {
-                                  email = value;
-                                },
-                              );
-                            },
-                          ),
-                          TextFormField(
-                              obscureText: true,
-                              decoration:
-                                  InputDecoration(labelText: 'Password'),
-                              onFieldSubmitted: (value) {
-                                setState(() {
-                                  password = value;
-                                });
-                              }),
-                          ElevatedButton(
-                              child: Text("Log In"),
-                              onPressed: logInAuthentication),
-                        ])),
+                      TextFormField(
+                        controller: myController1,
+                        decoration: InputDecoration(
+                            labelText: 'Email', hintText: 'Enter you email'),
+                      ),
+                      TextFormField(
+                        controller: myController2,
+                        obscureText: true,
+                        decoration: InputDecoration(labelText: 'Password'),
+                      ),
+                      ElevatedButton(
+                          child: Text("Log In"),
+                          onPressed: logInAuthentication),
+                    ])),
                     Column(
-                      children: <Widget>[
-                        Text(email),
-                        Text('password')],
+                      children: [
+                          Text('Welcoee ' + myController1.text)
+                          ,
+                      ],
                     )
                   ],
                 ))));
