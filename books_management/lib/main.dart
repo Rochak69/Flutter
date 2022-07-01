@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:books_management/BookStore.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      // When navigating to the "/" route, build the FirstScreen widget.
+      '/': (context) => MyApp(),
+      // When navigating to the "/second" route, build the SecondScreen widget.
+      '/second': (context) => BookStore(),
+    },
+  ));
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -12,9 +23,11 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   void logInAuthentication() {
     var username = myController1.text;
-    var password= myController2.text;
+    var password = myController2.text;
     if (username == "rochak" && password == "rochak") {
-      print("Success");
+      print("success");
+      Navigator.pushNamed(context, '/second');
+
       myController1.clear();
       myController2.clear();
     } else {
@@ -35,33 +48,53 @@ class MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: Text("Book Store Management System"),
             ),
-            body: Padding(
-                padding: const EdgeInsets.all(16),
+            body: SingleChildScrollView(
+                padding: const EdgeInsets.only(top: 60.0),
                 child: Column(
                   children: <Widget>[
                     Form(
                         child: Column(children: <Widget>[
-                      TextFormField(
-                        controller: myController1,
-                        decoration: InputDecoration(
-                            labelText: 'Email', hintText: 'Enter you email'),
+                      Center(
+                        child: Image.asset(
+                          'asset/images/codeware.png',
+                          scale: 1.5,
+                        ),
                       ),
-                      TextFormField(
-                        controller: myController2,
-                        obscureText: true,
-                        decoration: InputDecoration(labelText: 'Password'),
+                      Padding(
+                        padding: const EdgeInsets.only(top:20, left: 16, right:16, bottom: 10),
+                        child: TextFormField(
+                          controller: myController1,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Email', hintText: 'Enter you email'),
+                        ),
                       ),
-                      ElevatedButton(
-                          child: Text("Log In"),
-                          onPressed: logInAuthentication),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, right:16, bottom: 10),
+                        child: TextFormField(
+                          controller: myController2,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Password'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0.0),
+                        child: Container(
+                            height: 50,
+                            width: 250,
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: ElevatedButton(
+                                child: Text("Log In"),
+                                onPressed: logInAuthentication)),
+                      ),
                     ])),
-                    Column(
-                      children: [
-                          Text('Welcoee ' + myController1.text)
-                          ,
-                      ],
-                    )
                   ],
                 ))));
   }
 }
+
+
