@@ -1,3 +1,4 @@
+import 'package:books_management/Database.dart';
 import 'package:flutter/material.dart';
 class BookStore extends StatelessWidget {
   @override
@@ -7,10 +8,15 @@ class BookStore extends StatelessWidget {
         title: const Text('Book Store'),
       ),
       body: Center(
-          child: Text(
-            "HI",
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          )),
-    );
+          child: Column(
+            children: [
+              ElevatedButton(
+                  onPressed: null,
+                  child: Text('Insert'))
+            ],
+
+    )
+
+    ));
   }
 }

@@ -1,7 +1,66 @@
+
 import 'package:flutter/material.dart';
 import 'package:books_management/BookStore.dart';
+import 'package:sqflite/sqflite.dart';
 
-void main() {
+import 'package:path/path.dart' ;
+import 'package:flutter/widgets.dart';
+import './Database.dart';
+
+
+
+
+void main () async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  //  final database = openDatabase(
+  //     join(await getDatabasesPath(), 'book_database.db'),
+  //     onCreate: (db, version) {
+  // return db.execute(
+  // 'CREATE TABLE books(bookId INTEGER PRIMARY KEY, name TEXT');
+  // },
+  // version: 1,
+  // );
+
+  // Future<void> insertBook(Book book) async{
+  //   final db= await database;
+  //   await db.insert(
+  //     'books',
+  //     book.toMap(),
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  // }
+
+  // var harryPotter= Book(
+  //   bookId: 0,
+  //   name: 'Rochak',
+  //   price: 100,
+  //   category: 'fiction',
+  //   author: 'Codeware',
+  // );
+  // await insertBook(harryPotter);
+
+  // Future<List<Book>> books() async {
+  //   // Get a reference to the database.
+  //   final db = await database;
+  //
+  //   // Query the table for all The Dogs.
+  //   final List<Map<String, dynamic>> maps = await db.query('books');
+  //
+  //   // Convert the List<Map<String, dynamic> into a List<Book>.
+  //   return List.generate(maps.length, (i) {
+  //     return Book(
+  //       bookId: maps[i]['bookId'],
+  //       name: maps[i]['name'],
+  //       author: maps[i]['author'],
+  //       category: maps[i]['category'],
+  //       price: maps[i]['price']
+  //     );
+  //   });
+  // }
+  // print(await books());
+
+
+
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -27,8 +86,7 @@ class MyAppState extends State<MyApp> {
     var password = myController2.text;
     if (username == "rochak" && password == "rochak") {
       print("success");
-      Navigator.pushNamed(context, '/second');
-
+      Navigator.pushNamed(this.context, '/second');
       myController1.clear();
       myController2.clear();
     } else {
