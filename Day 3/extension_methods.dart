@@ -4,9 +4,15 @@ extension on DateTime {
   }
 }
 
+String humanizeDateTime(DateTime dateTime) {
+  return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
+}
+
 void main() {
   final dateTime = DateTime.now();
+
   print(dateTime.humanize);
+  print(humanizeDateTime(dateTime));
   print(('42'.parseInt()).runtimeType);
   String a = "Codeware Labs";
   print(a.reverse());
