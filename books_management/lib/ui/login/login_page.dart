@@ -84,11 +84,11 @@ class _LoginPageState extends State<LoginPage> {
     var username = myController1.text;
     var password = myController2.text;
     if (username == "rochak" && password == "rochak") {
-      print("Login Succesful");
       Navigator.pushNamed(context, '/home');
       myController1.clear();
       myController2.clear();
     } else {
+      // ignore: avoid_print
       print("Invalid Username or Password");
     }
   }

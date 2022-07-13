@@ -1,16 +1,16 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
 class Books {
+  final int id;
   final String name;
   final String author;
   final String category;
   final String price;
 
-  const Books({
+  Books({
+    required this.id,
     required this.name,
     required this.author,
     required this.category,
@@ -19,6 +19,7 @@ class Books {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'name': name,
       'author': author,
       'category': category,
@@ -30,7 +31,7 @@ class Books {
   // each dog when using the print statement.
   @override
   String toString() {
-    return this.name + this.author + this.category + this.price;
+    return 'Books{id: $id, name: $name, author: $author, category: $category, price: $price}';
   }
 }
 
@@ -38,20 +39,18 @@ class DB {
   dynamic database;
 
   initDb() async {
-    print("initDB");
-
     // Open the database and store the reference.
 
     database = openDatabase(
       // Set the path to the database. Note: Using the `join` function from the
       // `path` package is best practice to ensure the path is correctly
       // constructed for each platform.
-      join(await getDatabasesPath(), 'books_store_database.db'),
+      p.join(await getDatabasesPath(), 'test4.db'),
       // When the database is first created, create a table to store dogs.
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         return db.execute(
-          'CREATE TABLE books(name TEXT, author TEXT, category TEXT, price TEXT)',
+          'CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, author TEXT, category TEXT, price TEXT)',
         );
       },
 
@@ -72,7 +71,6 @@ class DB {
       book.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("Sucessfully inserted");
   }
 
   Future<List<Books>> queryAll() async {
@@ -85,39 +83,40 @@ class DB {
     // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
       return Books(
-        name: maps[i]['name'],
-        author: maps[i]['author'],
-        category: maps[i]['category'],
-        price: maps[i]['price'],
-      );
+          id: maps[i]['id'],
+          name: maps[i]['name'],
+          author: maps[i]['author'],
+          category: maps[i]['category'],
+          price: maps[i]['price']);
     });
   }
-  // Future<void> updateBook(Book book) async {
-  //   // Get a reference to the database.
-  //   final db = await database;
 
-  //   // Update the given Dog.
-  //   await db.update(
-  //     'books',
-  //     book.toMap(),
-  //     // Ensure that the Dog has a matching id.
-  //     where: 'id = ?',
-  //     // Pass the Dog's id as a whereArg to prevent SQL injection.
-  //     whereArgs: [book.id],
-  //   );
-  // }
+  Future<void> updateBook(Books book) async {
+    // Get a reference to the database.
+    final db = await database;
 
-  // Future<void> deleteBook(int id) async {
-  //   // Get a reference to the database.
-  //   final db = await database;
+    // Update the given Dog.
+    await db.update(
+      'books',
+      book.toMap(),
+      // Ensure that the Dog has a matching id.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [book.id],
+    );
+  }
 
-  //   // Remove the Dog from the database.
-  //   await db.delete(
-  //     'books',
-  //     // Use a `where` clause to delete a specific dog.
-  //     where: 'id = ?',
-  //     // Pass the Dog's id as a whereArg to prevent SQL injection.
-  //     whereArgs: [id],
-  //   );
-  // }
+  Future<void> deleteBook(int id) async {
+    // Get a reference to the database.
+    final db = await database;
+
+    // Remove the Dog from the database.
+    await db.delete(
+      'books',
+      // Use a `where` clause to delete a specific dog.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [id],
+    );
+  }
 }

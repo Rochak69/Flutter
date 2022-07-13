@@ -1,12 +1,11 @@
-import 'package:books_management/Database.dart';
+import 'package:books_management/database.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   static String route = "/home";
 
-  // HomePage({Key? key}) : super(key: key) {
-  //   db = DB();
-  // }
+  // ignore: prefer_const_constructors_in_immutables
+  HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DB db = DB();
-  _HomePageState({Key? key}) {
+  _HomePageState() {
     db = DB();
   }
 
@@ -32,8 +31,12 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Insert Book')),
             ElevatedButton(
                 onPressed: showDataFromDB, child: const Text('Show Books')),
-            const ElevatedButton(onPressed: null, child: Text('Update a Book')),
-            const ElevatedButton(onPressed: null, child: Text('Delete Book')),
+            ElevatedButton(
+                onPressed: updateBookFromID,
+                child: const Text('Update a Book')),
+            ElevatedButton(
+                onPressed: deleteBookFromName,
+                child: const Text('Delete Book')),
           ],
         )));
   }
@@ -42,9 +45,24 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, '/second');
   }
 
+  deleteBookFromName() {
+    db.deleteBook(0);
+  }
+
+  updateBookFromID() {
+    var book = Books(
+        id: 0,
+        name: ' Bible',
+        author: 'Rochak',
+        category: 'Codeware',
+        price: '69');
+    db.updateBook(book);
+  }
+
   Future<void> showDataFromDB() async {
-    print("showing books............");
+    debugPrint("showing books............");
     var allBooks = await db.queryAll();
+    // ignore: avoid_print
     print(allBooks);
   }
 }

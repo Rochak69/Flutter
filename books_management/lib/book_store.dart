@@ -1,10 +1,9 @@
-import 'package:books_management/Database.dart';
-import 'package:flutter/foundation.dart';
+import 'package:books_management/database.dart';
 import 'package:flutter/material.dart';
-import './Database.dart';
+import 'database.dart';
 
 class BookStore extends StatefulWidget {
-  late DB db;
+  late final DB db;
 
   BookStore({Key? key}) : super(key: key) {
     db = DB();
@@ -17,6 +16,7 @@ class BookStore extends StatefulWidget {
 class _BookStoreState extends State<BookStore> {
   Future<void> insertIntoDb() async {
     var book = Books(
+        id: 3,
         name: inputName.text,
         author: inputAuthor.text,
         category: inputCategory.text,
@@ -48,7 +48,7 @@ class _BookStoreState extends State<BookStore> {
                     top: 20, left: 16, right: 16, bottom: 10),
                 child: TextFormField(
                   controller: inputName,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Book Name',
                       hintText: 'Enter the book\'s name'),
@@ -58,7 +58,7 @@ class _BookStoreState extends State<BookStore> {
                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 child: TextFormField(
                   controller: inputAuthor,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Author'),
                 ),
               ),
@@ -66,7 +66,7 @@ class _BookStoreState extends State<BookStore> {
                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 child: TextFormField(
                   controller: inputCategory,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Category'),
                 ),
               ),
@@ -74,11 +74,12 @@ class _BookStoreState extends State<BookStore> {
                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 child: TextFormField(
                   controller: inputPrice,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Price'),
                 ),
               ),
-              ElevatedButton(onPressed: insertIntoDb, child: Text('Insert')),
+              ElevatedButton(
+                  onPressed: insertIntoDb, child: const Text('Insert')),
             ],
           ))
         ])));
