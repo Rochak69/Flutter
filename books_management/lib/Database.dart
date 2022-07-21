@@ -1,16 +1,17 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
 class Books {
-  final int id;
+  final int? id;
   final String name;
   final String author;
   final String category;
   final String price;
 
   Books({
-    required this.id,
+    this.id,
     required this.name,
     required this.author,
     required this.category,
@@ -36,12 +37,12 @@ class Books {
 }
 
 class DB {
-  dynamic database;
+  Database? database;
 
   initDb() async {
     // Open the database and store the reference.
 
-    database = openDatabase(
+    database = await openDatabase(
       // Set the path to the database. Note: Using the `join` function from the
       // `path` package is best practice to ensure the path is correctly
       // constructed for each platform.
@@ -60,13 +61,14 @@ class DB {
 
   DB() {
     // Avoid errors caused by flutter upgrade.
-    initDb();
   }
 
   Future<void> insertBook(Books book) async {
     // Get a reference to the database.
-    final db = await database;
-    await db.insert(
+    // final db = await database;
+    if (database == null) await initDb();
+
+    await database?.insert(
       'books',
       book.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -75,10 +77,10 @@ class DB {
 
   Future<List<Books>> queryAll() async {
     // Get a reference to the database.
-    final db = await database;
+    if (database == null) await initDb();
 
     // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps = await db.query('books');
+    final List<Map<String, dynamic>> maps = await database!.query('books');
 
     // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
@@ -93,10 +95,10 @@ class DB {
 
   Future<void> updateBook(Books book) async {
     // Get a reference to the database.
-    final db = await database;
+    if (database == null) await initDb();
 
     // Update the given Dog.
-    await db.update(
+    await database!.update(
       'books',
       book.toMap(),
       // Ensure that the Dog has a matching id.
@@ -108,10 +110,9 @@ class DB {
 
   Future<void> deleteBook(int id) async {
     // Get a reference to the database.
-    final db = await database;
-
+    if (database == null) await initDb();
     // Remove the Dog from the database.
-    await db.delete(
+    await database!.delete(
       'books',
       // Use a `where` clause to delete a specific dog.
       where: 'id = ?',

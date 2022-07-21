@@ -16,7 +16,6 @@ class BookStore extends StatefulWidget {
 class _BookStoreState extends State<BookStore> {
   Future<void> insertIntoDb() async {
     var book = Books(
-        id: 3,
         name: inputName.text,
         author: inputAuthor.text,
         category: inputCategory.text,

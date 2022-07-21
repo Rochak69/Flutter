@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   deleteBookFromName() {
-    db.deleteBook(0);
+    db.deleteBook(5);
   }
 
   updateBookFromID() {
