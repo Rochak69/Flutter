@@ -1,0 +1,15 @@
+export 'language_screen.dart';
+export './splash_screen.dart';
+export './agent_screen.dart';
+export './dashboard_screen.dart';
+export './enquries_screen.dart';
+export './notification_screen.dart';
+export './onboarding_screen.dart';
+export './onboarding_screen2.dart';
+export './onboarding_screen3.dart';
+export './otp_verification_screen.dart';
+export './packages_screen.dart';
+export './profile_screen.dart';
+export './properties_screen.dart';
+export './sign_in_screen.dart';
+export './total_contact_screen.dart';
