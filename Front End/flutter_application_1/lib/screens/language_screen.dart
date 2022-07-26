@@ -38,7 +38,9 @@ class LanguageScreen extends StatelessWidget {
                   child: Card(
                     child: Row(
                       children: [
-                        CircleAvatar(),
+                        CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                "https://thumbs.dreamstime.com/z/united-arab-emirates-flag-waving-fabric-texture-united-arab-emirates-flag-waving-fabric-texture-flag-blowing-wind-154417101.jpg")),
                         Text('Arabic'),
                         Icon(Icons.arrow_right_rounded),
                       ],
@@ -54,9 +56,15 @@ class LanguageScreen extends StatelessWidget {
                     child: Card(
                       child: Row(
                         children: [
-                          CircleAvatar(),
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                "https://cdn.pixabay.com/photo/2015/11/06/13/29/union-jack-1027898_960_720.jpg"),
+                          ),
                           Text('English'),
                           Icon(Icons.arrow_right_rounded),
+                          // TextField(
+                          //   decoration: InputDecoration(hintText: 'sasaas'),
+                          // )
                         ],
                       ),
                     ),

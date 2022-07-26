@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants/theme.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
@@ -9,7 +13,14 @@ class OtpVerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: kColorAccent,
+        title: Text(
+          "Verify",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: Stack(children: [
         Container(
           height: height,
@@ -77,15 +88,31 @@ class OtpVerificationScreen extends StatelessWidget {
                         Text("0:22"),
                       ],
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, DashBoard.name);
-                        },
-                        child: Text("Verify")),
+                    Padding(padding: const EdgeInsets.all(10)),
+                    Container(
+                      height: 50,
+                      width: 320,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  //to set border radius to button
+                                  borderRadius: BorderRadius.circular(30)),
+                              primary: kColorPrimary,
+                              onPrimary: Colors.white),
+                          onPressed: () {
+                            Navigator.pushNamed(context, DashBoard.name);
+                          },
+                          child: Text("Verify")),
+                    ),
+                    Padding(padding: const EdgeInsets.all(10)),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Didn't recieve the code?"),
-                        Text('Resend Code')
+                        Text(
+                          'Resend Code',
+                          style: TextStyle(color: kColorPrimary),
+                        )
                       ],
                     ),
                   ]),
