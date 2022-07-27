@@ -9,20 +9,21 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kColorAccent,
-        title: Text(
+        title: const Text(
           "Sign In",
           style: TextStyle(color: Colors.black),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
       ),
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             height: height,
             child: Image.network(
                 "https://www.krooqi.com/_next/static/images/spotlight-1-19b43e0e286ca0a3c3e97cdea2239e41.jpg",
@@ -45,32 +46,54 @@ class SignInScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: height * 0.02,
                     ),
-                    Text(
+                    const Text(
                       "Welcome to KROOQIO",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
-                    Padding(padding: const EdgeInsets.all(3)),
-                    Text("Sign in/Sign up with your Phone number"),
-                    Padding(padding: const EdgeInsets.all(15)),
-                    Text("Phone number"),
-                    Padding(padding: const EdgeInsets.all(5)),
+                    Padding(padding: EdgeInsets.all(height * 0.001)),
+                    const Text("Sign in/Sign up with your Phone number",
+                        style: TextStyle(fontSize: 15)),
+                    Padding(padding: EdgeInsets.all(height * 0.02)),
+                    const Text(
+                      "Phone Number",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Padding(padding: EdgeInsets.all(height * 0.01)),
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Wrap(
-                        children: [
-                          TextField(
-                            decoration: InputDecoration(
-                                hintText: "Enter you phone number"),
+                      padding: const EdgeInsets.all(5),
+                      height: height * 0.07,
+                      width: width,
+                      child: Card(
+                        child: Row(children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0), //or 15.0
+                            child: SizedBox(
+                                width: width * 0.2,
+                                child: Image.network(
+                                    "https://thumbs.dreamstime.com/z/united-arab-emirates-flag-waving-fabric-texture-united-arab-emirates-flag-waving-fabric-texture-flag-blowing-wind-154417101.jpg")),
                           ),
-                        ],
+                          const Text(
+                            "+966",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                          const VerticalDivider(
+                            width: 20,
+                            thickness: 1,
+                            endIndent: 0,
+                            color: Colors.grey,
+                          ),
+                          const Flexible(
+                              child: TextField(
+                                  decoration: InputDecoration(
+                                      hintText: "Enter your phone number")))
+                        ]),
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.all(35)),
+                    Padding(padding: EdgeInsets.all(height * 0.03)),
                     Center(
                       child: SizedBox(
                           height: 50,
@@ -86,12 +109,12 @@ class SignInScreen extends StatelessWidget {
                                 Navigator.pushNamed(
                                     context, OtpVerificationScreen.name);
                               },
-                              child: Text("Sign IN"))),
+                              child: const Text("Sign In"))),
                     ),
-                    Padding(padding: const EdgeInsets.all(5)),
+                    Padding(padding: EdgeInsets.all(height * 0.01)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text("Don't have an account?"),
                         Text(
                           "Sign Up",

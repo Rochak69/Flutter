@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/theme.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
@@ -14,15 +11,15 @@ class OtpVerificationScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: kColorAccent,
-        title: Text(
+        title: const Text(
           "Verify",
           style: TextStyle(color: Colors.black),
         ),
       ),
       body: Stack(children: [
-        Container(
+        SizedBox(
           height: height,
           child: Image.network(
             "https://www.krooqi.com/_next/static/images/spotlight-1-19b43e0e286ca0a3c3e97cdea2239e41.jpg",
@@ -46,22 +43,23 @@ class OtpVerificationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: height * 0.02,
                     ),
-                    Text(
+                    const Text(
                       "Verify your account",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: height * 0.01,
                     ),
-                    Text("aasdasdASasA"),
+                    const Text(
+                        "A verification code has been sent to your phone number, type the verification code recieved and verify"),
                     SizedBox(
-                      height: 20,
+                      height: height * 0.02,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Flexible(child: TextField()),
                         SizedBox(
                           width: 9,
@@ -77,19 +75,17 @@ class OtpVerificationScreen extends StatelessWidget {
                         Flexible(child: TextField()),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    Padding(padding: EdgeInsets.all(height * 0.01)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text("Code will expire on"),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        Padding(padding: EdgeInsets.all(2)),
                         Text("0:22"),
                       ],
                     ),
-                    Padding(padding: const EdgeInsets.all(10)),
-                    Container(
+                    const Padding(padding: EdgeInsets.all(10)),
+                    SizedBox(
                       height: 50,
                       width: 320,
                       child: ElevatedButton(
@@ -102,12 +98,12 @@ class OtpVerificationScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(context, DashBoard.name);
                           },
-                          child: Text("Verify")),
+                          child: const Text("Verify")),
                     ),
-                    Padding(padding: const EdgeInsets.all(10)),
+                    const Padding(padding: EdgeInsets.all(10)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text("Didn't recieve the code?"),
                         Text(
                           'Resend Code',

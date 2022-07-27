@@ -9,5 +9,5 @@ final themedata = ThemeData(
         onPrimary: kColorPrimary,
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: kColorAccent, selectedItemColor: kColorPrimary));
