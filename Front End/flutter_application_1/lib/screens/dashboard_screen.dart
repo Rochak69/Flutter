@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/sign_in_screen.dart';
+import 'package:flutter_application_1/constants/top_bar.dart';
+
+import 'package:flutter_application_1/screens/screens.dart';
+
+import 'package:flutter_application_1/constants/bottom_nav_bar.dart';
 
 import '../constants/theme.dart';
-// import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class DashBoard extends StatelessWidget {
+class DashBoard extends StatefulWidget {
   static const name = '2';
   const DashBoard({Key? key}) : super(key: key);
 
   @override
+  State<DashBoard> createState() => _DashBoardState();
+}
+
+class _DashBoardState extends State<DashBoard> {
+  @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    const IconData notifications =
-        IconData(0xe44f, fontFamily: 'MaterialIcons');
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -24,52 +31,7 @@ class DashBoard extends StatelessWidget {
                 width: width,
                 child: Column(
                   children: [
-                    Container(
-                      height: height * 0.11,
-                      width: width,
-                      color: kColorAccent,
-                      child: Row(children: [
-                        SizedBox(
-                          width: width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, SignInScreen.name);
-                                },
-                                child: const CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      "https://thumbs.dreamstime.com/z/arab-person-24916754.jpg"),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, SignInScreen.name);
-                                },
-                                child: Image(
-                                    width: width * 0.5,
-                                    height: height * 0.065,
-                                    image: const NetworkImage(
-                                        "https://s.mihnati.com/company_logos/06/79680115395868.jpg")),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, SignInScreen.name);
-                                },
-                                child: const Icon(
-                                  notifications,
-                                  size: 30,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ]),
-                    ),
+                    const TopBar(),
                     SingleChildScrollView(
                       child: Container(
                           height: height * 0.47,
@@ -376,21 +338,7 @@ class DashBoard extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(backgroundColor: kColorAccent, items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.backpack_outlined,
-          ),
-          label: "Packages",
-        ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.book_outlined), label: "Enquries"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.house_outlined), label: "Properties"),
-        BottomNavigationBarItem(icon: Icon(Icons.people_alt), label: "Agent"),
-      ]),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

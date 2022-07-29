@@ -11,7 +11,7 @@ class AppRouter {
     OnBoardingScreen3.name: ((context) => const OnBoardingScreen3()),
     SignInScreen.name: ((context) => const SignInScreen()),
     OtpVerificationScreen.name: ((context) => const OtpVerificationScreen()),
-    DashBoard.name: ((context) => const DashBoard()),
+    DashBoard.name: ((context) => DashBoard()),
     ProfileScreen.name: ((context) => const ProfileScreen()),
     NotificationScreen.name: ((context) => const NotificationScreen()),
     TotalContactScreen.name: ((context) => const TotalContactScreen()),

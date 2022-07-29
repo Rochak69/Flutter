@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants/bottom_nav_bar.dart';
 import 'package:flutter_application_1/constants/theme.dart';
 import 'package:flutter_application_1/screens/dashboard_screen.dart';
+import 'package:flutter_application_1/screens/packages_screen.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   static const name = 'ASDas';
