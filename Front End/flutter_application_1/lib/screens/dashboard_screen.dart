@@ -16,12 +16,16 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+
   @override
   Widget build(BuildContext context) {
+    const IconData notifications =
+    IconData(0xe44f, fontFamily: 'MaterialIcons');
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar:const TopBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,7 +35,6 @@ class _DashBoardState extends State<DashBoard> {
                 width: width,
                 child: Column(
                   children: [
-                    const TopBar(),
                     SingleChildScrollView(
                       child: Container(
                           height: height * 0.47,

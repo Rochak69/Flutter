@@ -17,11 +17,10 @@ class PackagesScreen extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(children: [
-        const TopBar(),
         SafeArea(
           child: SingleChildScrollView(
               child: Column(
-            children: [
+              children: [
               Text(
                 "A",
                 style: TextStyle(fontSize: 100),
